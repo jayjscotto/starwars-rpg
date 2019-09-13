@@ -6,11 +6,215 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<title>Title</title>
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<title>Star Wars RPG Jason Scotto</title>
+
 </head>
 <body>
 
+<!--HEADER-->
+<div class="row">
+    <div class="col">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <a class="navbar-brand" href="#"><h3 class="title text-light"> Jason Scotto <span class="cyan"> . </span></h3></a>
+        </nav>
+    </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="intro-screen" class="jumbotron bg-dark my-5 mx-5 text-light">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4 text-center typography mb-5">STAR WARS RPG</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mx-auto">
+                <img src="assets/images/star-wars-logo.jpg" alt="Star Wars Logo" height="40%" class='img-fluid text-center mx-auto'>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4 text-center typography mt-5">CHOOSE WISELY</h1>
+            <h2 class="lead text-center">Click on any avatar below to select your fighter.</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">Rebellion</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="avatar-btn">
+                        <img src="assets/images/luke-skywalker.jpg" alt="Luke Skywalker" class="avatar mt-2">
+                        <p class="text-center">Luke Skywalker</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/obi-wan.jpg" alt="Obi-Wan" class="avatar mt-2">
+                        <p class="text-center">Obi-Wan Kenobi</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/princess-leia.jpg" alt="Leia" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Princess Leia</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="avatar-btn">
+                        <img src="assets/images/mace-windu.jpg" alt="Mace Windu" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Mace Windu</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/han-solo.jpg" alt="Han Solo" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Han Solo</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/yoda.jpg" alt="Yoda" class="avatar mt-2">
+                        <p class="text-center">Yoda</p>
+                    </div>
+                </div>
+            </div>
+        
+       
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <img id="choose-wisely" src="assets/images/choose-wisely.jpg" alt="choose-wisely">
+                </div>
+            </div>
+            <div class="row">
+              
+            </div>
+           
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center">Empire</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="avatar-btn">
+                        <img src="assets/images/vader.webp" alt="Darth Vader" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Darth Vader</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/darth-maul.jpg" alt="Darth Maul" width="128px" height="128px"  class="avatar mt-2">
+                        <p class="text-center">Darth Maul</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/tarkin.jpg" alt="Tarkin" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Tarkin</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="avatar-btn">
+                        <img src="assets/images/palpatine.jpg" alt="Palpatine" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Palpatine</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/kylo-ren.webp" alt="Kylo Ren" width="128px" height="128px" class="avatar mt-2">
+                        <p class="text-center">Kylo Ren</p>
+                    </div>
+                    <div class="avatar-btn">
+                        <img src="assets/images/snoke.jpg" alt="Snoke" class="avatar mt-2">
+                        <p class="text-center">Snoke</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-center">Fighter: </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="user-choice" class="col">
+                        <!--User Choice goes here-->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="text-center">VS.</h4>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                            <h4 class="text-center">Enemy: </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="enemy-choice" class="col">
+                        <!--Enemy Choice goes here-->
+                    </div>
+                </div>
+            </div>
+    </div>
+    <p class="lead text-center">Choose your fighter and your enemy... Enter the arena when you are ready.</p>
+    <hr class="my-1">
+    <p class="text-center">In the arena, press the attack button to attack your enemey until the fight is over.</p>
+    <div class="row">
+        <div class="col text-center"><a class="btn btn-danger btn-lg" href="#arena-container" role="button">Enter the Arena</a></div>
+    </div>
+    
+
+</div>
+</div>
+
+<!-- ARENA -->
+
+<div class="jumbotron bg-dark text-light m-5">
+    <h1 class="display-4 typography text-center">ARENA</h1>
+    <p class="lead text-center">Press the attack button to attack your enemy!</p>
+    <hr class="my-4">
+
+    <div id="arena-container" class="container">
+        <div class="row my-5">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-center">Fighter: </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="user-choice" class="col">
+                        <!--User Choice goes here-->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="text-center">VS.</h4>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                            <h4 class="text-center">Enemy: </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="enemy-choice" class="col">
+                        <!--Enemy Choice goes here-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col text-center"><a class="btn btn-danger btn-lg font-weight-bold" href="#" role="button">ATTACK</a></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
