@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 <link rel="stylesheet" href="assets/style.css">
 <title>Star Wars RPG Jason Scotto</title>
 
@@ -114,7 +115,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="avatar-btn">
+                    <div id="palpatine" class="avatar-btn">
                         <img src="assets/images/palpatine.jpg" alt="Palpatine" width="128px" height="128px" class="avatar mt-2">
                         <p class="text-center">Palpatine</p>
                     </div>
@@ -138,7 +139,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="user-choice" class="col">
+                    <div id="user-choice" class="col text-center">
                         <!--User Choice goes here-->
                     </div>
                 </div>
@@ -153,7 +154,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="enemy-choice" class="col">
+                    <div id="enemy-choice" class="col text-center">
                         <!--Enemy Choice goes here-->
                     </div>
                 </div>
@@ -163,7 +164,7 @@
     <hr class="my-1">
     <p class="text-center">In the arena, press the attack button to attack your enemey until the fight is over.</p>
     <div class="row">
-        <div class="col text-center"><a class="btn btn-danger btn-lg" href="#arena-container" role="button">Enter the Arena</a></div>
+        <div class="col text-center"><a id="enter-arena" class="btn btn-danger btn-lg" href="#arena-container" role="button">Enter the Arena</a></div>
     </div>
     
 
@@ -186,13 +187,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="user-choice" class="col">
+                    <div id="arena-user" class="col">
                         <!--User Choice goes here-->
                     </div>
                 </div>
             </div>
             <div class="col">
-                <h4 class="text-center">VS.</h4>
+                <h4 class="text-center my-auto">VS.</h4>
             </div>
             <div class="col">
                 <div class="row">
@@ -201,7 +202,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div id="enemy-choice" class="col">
+                    <div id="arena-enemy" class="col">
                         <!--Enemy Choice goes here-->
                     </div>
                 </div>
@@ -215,7 +216,7 @@
 
 
 <script src="assets/script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

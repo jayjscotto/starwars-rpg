@@ -28,12 +28,16 @@
     letter-spacing: 0.1em;
 }
 
-div .avatar-btn {
+.avatar-btn {
     text-align: center;
+
 }
 
+
+
 #choose-wisely {
-    margin-top: 2em;
+    margin: 5em auto;
+    opacity: .3;
 }
 
 .btn {
