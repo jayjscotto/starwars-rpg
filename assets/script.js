@@ -46,7 +46,7 @@ $(document).ready(function () {
         enemyFighter = null;
         $('#arena-user').detach();
         $('#arena-enemy').detach()
-        playGame();
+    
     }
 
     //fighter constructor
@@ -93,7 +93,6 @@ $(document).ready(function () {
     //array check
     console.log(fighterArray);
 
-    function playGame() {
         //button click on each avatar
         $('.avatar-btn').on('click', function(){
             //if user has not selected a fighter, slsects their fighter on click
@@ -132,8 +131,6 @@ $(document).ready(function () {
 
         })
 
-    }
-    playGame();
 
      //Execute Order 66
      $('#palpatine').one('click', function() {
@@ -164,6 +161,7 @@ $(document).ready(function () {
         if(userFighter.healthPoints <= 0) {
             alert('Game Over!');
             resetGame();
+            console.log(userSelected, userFighter, enemySelected, enemyFighter);
 
         }
 
