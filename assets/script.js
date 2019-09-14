@@ -45,7 +45,8 @@ $(document).ready(function () {
         userFighter = null;
         enemyFighter = null;
         $('#arena-user').detach();
-        $('#arena-enemy').detach();
+        $('#arena-enemy').detach()
+        playGame();
     }
 
     //fighter constructor
@@ -163,7 +164,7 @@ $(document).ready(function () {
         if(userFighter.healthPoints <= 0) {
             alert('Game Over!');
             resetGame();
-            playGame();
+
         }
 
         //if enemy runs out of health points,
