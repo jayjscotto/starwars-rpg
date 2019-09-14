@@ -1,9 +1,8 @@
-//maybe utilize $(document).ready(function () {--- jQuery inside this--- })
-
-// Game Loads And...
+// on document ready...
     //1. Choose Character
     //2. Choose Opponent
-    //3. Option to Enter Arena or Pick a Different Oponent
+    //3. Option to Enter Arena or (maybe) Pick a Different Oponent
+
     //4. Battle in the Arena
         //4a. Each character has HP (Health Points)
         //4b. Each character has AP (Attack Points)
@@ -28,34 +27,81 @@
 
 
 
-$(document).ready(function() {
+$(document).ready(function playGame () {
+    //global variables
     const userChoice = $('#user-choice');
-    let userSelected = "";
     const enemyChoice = $('#enemy-choice');
-    let enemySelected = "";
+    let userSelected = false;
+    let enemySelected = false;
+    let userChar ;
+    let enemyChar ;
+
+    //Character constructor
+    function Char(name, side, healthPoints, attackPoints, counterAttackPoints) {
+        this.name = name;
+        this.side = side;
+        this.healthPoints = healthPoints;
+        this.attackPoints = attackPoints;
+        this.counterAttackPoints = counterAttackPoints;
+        function attack(attack, counterAttack) {
+            enemyChar.healthPoints -= this.attackPoints;
+        }
+        
+    }
+
+    //REBELLION Characters
+    const lukeSkywalker = new Char("Luke Skywalker", "Rebellion", 140, 30, 25);
+    const obiWan = new Char("Obi Wan Kenobi", "Rebellion", 120, 26, 22);
+    const princessLeia = new Char("Princess Leia", "Rebellion", 115, 35, 23);
+    const hanSolo = new Char("Han Solo", "Rebellion", 129, 31, 31);
+    const maceWindu = new Char("Mace Windu", "Jedi", 140, 56, 35);
+    const yoda = new Char("Yoda", "Jedi", 150, 67, 40);
+
+    //EMPIRE Chacters
+    const darthVader = new Char("Darth Vader", "Empire", 119, 25, 21);
+    const darthMaul = new Char("Darth Maul", "Empire", 110, 24, 20);
+    const tarkin = new Char("Tarkin", "Empire", 90, 22, 18);
+    const palpatine = new Char("Palpatine", "Empire", 130, 27, 28);
+    const kyloRen = new Char("Kylo Ren", "First Order", 129, 32, 32);
+    const snoke = new Char("Snoke", "First Order", 145, 56,32 );
+
+    function userCharSelect(char) {
+        console.log('user char is: ' + char);
+        return userChar = char;
+    }
+
+    function enemyCharSelect(char) {
+        console.log('enemy char is: ' + char);
+        return enemyChar = char;
+    }
 
     //button click on each avatar
     $('.avatar-btn').one('click', function(){
         //if user has not selected a fighter, slsects their fighter on click
-        if(!userSelected) {
+        if (!userSelected) {
             console.log('User Selected fighter:' + $(this).text());
             userChoice.append($(this).html());
             userSelected = true;
+            userChar = $(this).attr('data-name');
+            return userCharSelect(userChar)
         }
         //if user has selecte their fighter, selects enemy on click
-        else if (userSelected) {
+        else if (userSelected && !enemySelected) {
             console.log('User Selected Enemy:' + $(this).text());
             enemyChoice.append($(this).html());
             enemySelected = true;
-        }
+            enemyChar = $(this).attr('data-name');
+            return enemyCharSelect(enemyChar);
+        } 
 
-        //Execute Order 66
-        $('#palpatine').one('click', function() {
-            confirm('Execute Order 66?');
-        })
-    
     })
 
+     //Execute Order 66
+     $('#palpatine').one('click', function() {
+        confirm('Execute Order 66?');
+    })
+
+    //Function to move user and enemy into the Arena
     $('#enter-arena').on('click', function() {
         if(userSelected && enemySelected) {
             userChoice.detach();
@@ -65,7 +111,6 @@ $(document).ready(function() {
         }
     })
 
-
-
+    
 
 })
