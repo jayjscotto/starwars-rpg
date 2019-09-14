@@ -13,6 +13,9 @@
         //  5a.3 Opponent responds with CAP
 
         //  5b. Repeat Step 5a. until either User or Opponent has 0 HP
+            //5b.2 If User defeats opponent, push opponent to defeated Enemies array
+
+            //5b.3 User can select another enemy to fight
 
     //6. IF Opponent (CPU/ENEMY) has 0 HP, round has been won, 
         //  6a. Return to opening screen, select different opponent.
@@ -25,7 +28,7 @@
     //7. IF User has 0 HP, game over
         //  7a. Display Reset or 'Try Again?' Button (OR.. decrement lives?)
 
-$(document).ready(function playGame () {
+$(document).ready(function () {
     //global variables
     const userChoice = $('#user-choice');
     const enemyChoice = $('#enemy-choice');
@@ -34,9 +37,19 @@ $(document).ready(function playGame () {
     let userFighter ;
     let enemyFighter ;
     const fighterArray = [];
+    let defeatedEnemies = [];
+
+    function resetGame () {
+        userSelected = false;
+        enemySelected = false;
+        userFighter = null;
+        enemyFighter = null;
+        $('#arena-user').detach();
+        $('#arena-enemy').detach();
+    }
 
     //fighter constructor
-    function Fighter(name, side, healthPoints, attackPoints, counterAttackPoints) {
+    function Fighter (name, side, healthPoints, attackPoints, counterAttackPoints) {
         this.name = name;
         this.side = side;
         this.healthPoints = healthPoints;
@@ -79,50 +92,47 @@ $(document).ready(function playGame () {
     //array check
     console.log(fighterArray);
 
-    // function userFighterSelect(Fighter) {
-    //     console.log('user Fighter is: ' + Fighter);
-    //     return userFighter = Fighter;
-    // }
+    function playGame() {
+        //button click on each avatar
+        $('.avatar-btn').on('click', function(){
+            //if user has not selected a fighter, slsects their fighter on click
+            if (userSelected === false) {
+                console.log('User Selected fighter:' + $(this).text());
+                userChoice.append($(this).html());
+                userSelected = true;
+                console.log($(this).attr('data-name'));
 
-    // function enemyFighterSelect(Fighter) {
-    //     console.log('enemy Fighter is: ' + Fighter);
-    //     return enemyFighter = Fighter;
-    // }
+                //for loop that iterates over fighter array, and sets the userFighter variable to the object whose name is equivalent to the data-name attribute
+                for (let i = 0; i < fighterArray.length; i++) {
+                    if ($(this).attr('data-name') === fighterArray[i].name) {
+                        userFighter = fighterArray[i];
 
-
-    //button click on each avatar
-    $('.avatar-btn').one('click', function(){
-        //if user has not selected a fighter, slsects their fighter on click
-        if (!userSelected) {
-            console.log('User Selected fighter:' + $(this).text());
-            userChoice.append($(this).html());
-            userSelected = true;
-            //for loop that iterates over fighter array, and sets the userFighter to the 
-            //set data-name attribute equal to fighter.name
-            console.log($(this).attr('data-name'));
-            for (let i = 0; i < fighterArray.length; i++) {
-                if ($(this).attr('data-name') === fighterArray[i].name) {
-                    userFighter = fighterArray[i];
-                    console.log('user fighter is: ' + userFighter.name);
+                        console.log('user fighter is: ' + userFighter.name);
+                    }
                 }
+                return userFighter;
             }
-            return userFighter;
-        }
-        //if user has selecte their fighter, selects enemy on click
-        else if (userSelected && !enemySelected) {
-            console.log('User Selected Enemy:' + $(this).text());
-            enemyChoice.append($(this).html());
-            enemySelected = true;
-            for (let i = 0; i < fighterArray.length; i++) {
-                if ($(this).attr('data-name') === fighterArray[i].name) {
-                    enemyFighter = fighterArray[i];
-                    console.log('enemy fighter is: ' + enemyFighter.name);
-                }
-            }
-            return enemyFighter;
-        } 
 
-    })
+            //if user has selected their fighter, selects enemy on click
+            else if (userSelected === true && enemySelected === false) {
+                console.log('User Selected Enemy:' + $(this).text());
+                enemyChoice.append($(this).html());
+                enemySelected = true;
+
+                //for loop that iterates over fighter array, and sets the enemeyFighter variableto the object whose name is equivalent to the data-name attribute
+                for (let i = 0; i < fighterArray.length; i++) {
+                    if ($(this).attr('data-name') === fighterArray[i].name) {
+                        enemyFighter = fighterArray[i];
+                        console.log('enemy fighter is: ' + enemyFighter.name);
+                    }
+                }
+                return enemyFighter;
+            }
+
+        })
+
+    }
+    playGame();
 
      //Execute Order 66
      $('#palpatine').one('click', function() {
@@ -140,6 +150,25 @@ $(document).ready(function playGame () {
     })
 
     //Attack button to execute function that attacks enemy, but also counterattacks user
-    //$('#)
+    $('#attack').on('click', function (){
+        console.log(userFighter.healthPoints + userFighter.attackPoints)
+        enemyFighter.healthPoints -= userFighter.attackPoints;
+        userFighter.healthPoints -= enemyFighter.counterAttackPoints;
+        console.log(userFighter.healthPoints);
+        console.log(enemyFighter.healthPoints);
+
+        //if user runs out of health points,
+        //alert game over
+        //reset game function executes
+        if(userFighter.healthPoints <= 0) {
+            alert('Game Over!');
+            resetGame();
+            playGame();
+        }
+
+        //if enemy runs out of health points,
+        //push enemy to defeated enemies array...
+        //remove defeated enemy from being able to be selected
+    });
 
 })
