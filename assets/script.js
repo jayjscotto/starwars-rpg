@@ -45,20 +45,20 @@ $(document).ready(function playGame () {
     }
 
     //REBELLION fighters
-    const lukeSkywalker = new Fighter("Luke Skywalker", "Rebellion", 140, 30, 25);
-    const obiWan = new Fighter("Obi Wan Kenobi", "Rebellion", 120, 26, 22);
-    const princessLeia = new Fighter("Princess Leia", "Rebellion", 115, 35, 23);
-    const hanSolo = new Fighter("Han Solo", "Rebellion", 129, 31, 31);
-    const maceWindu = new Fighter("Mace Windu", "Jedi", 140, 56, 35);
-    const yoda = new Fighter("Yoda", "Jedi", 150, 67, 40);
+    const lukeSkywalker = new Fighter ("Luke Skywalker", "Rebellion", 140, 30, 25);
+    const obiWan = new Fighter ("Obi Wan Kenobi", "Rebellion", 120, 26, 22);
+    const princessLeia = new Fighter ("Princess Leia", "Rebellion", 115, 35, 23);
+    const hanSolo = new Fighter ("Han Solo", "Rebellion", 129, 31, 31);
+    const maceWindu = new Fighter ("Mace Windu", "Jedi", 140, 56, 35);
+    const yoda = new Fighter ("Yoda", "Jedi", 150, 67, 40);
 
     //EMPIRE Chacters
-    const darthVader = new Fighter("Darth Vader", "Empire", 119, 25, 21);
-    const darthMaul = new Fighter("Darth Maul", "Empire", 110, 24, 20);
-    const tarkin = new Fighter("Tarkin", "Empire", 90, 22, 18);
-    const palpatine = new Fighter("Palpatine", "Empire", 130, 27, 28);
-    const kyloRen = new Fighter("Kylo Ren", "First Order", 129, 32, 32);
-    const snoke = new Fighter("Snoke", "First Order", 145, 56,32 );
+    const darthVader = new Fighter ("Darth Vader", "Empire", 119, 25, 21);
+    const darthMaul = new Fighter ("Darth Maul", "Empire", 110, 24, 20);
+    const tarkin = new Fighter ("Tarkin", "Empire", 90, 22, 18);
+    const palpatine = new Fighter ("Palpatine", "Empire", 130, 27, 28);
+    const kyloRen = new Fighter ("Kylo Ren", "First Order", 129, 32, 32);
+    const snoke = new Fighter ("Snoke", "First Order", 145, 56,32 );
 
     //good guys
     fighterArray.push(lukeSkywalker);
@@ -103,7 +103,7 @@ $(document).ready(function playGame () {
             for (let i = 0; i < fighterArray.length; i++) {
                 if ($(this).attr('data-name') === fighterArray[i].name) {
                     userFighter = fighterArray[i];
-                    console.log(userFighter);
+                    console.log('user fighter is: ' + userFighter.name);
                 }
             }
             return userFighter;
@@ -113,8 +113,13 @@ $(document).ready(function playGame () {
             console.log('User Selected Enemy:' + $(this).text());
             enemyChoice.append($(this).html());
             enemySelected = true;
-            enemyFighter = $(this).attr('data-name');
-            return enemyFighterSelect(enemyFighter);
+            for (let i = 0; i < fighterArray.length; i++) {
+                if ($(this).attr('data-name') === fighterArray[i].name) {
+                    enemyFighter = fighterArray[i];
+                    console.log('enemy fighter is: ' + enemyFighter.name);
+                }
+            }
+            return enemyFighter;
         } 
 
     })
