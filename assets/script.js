@@ -42,11 +42,11 @@ $(document).ready(function () {
     function resetGame () {
         userSelected = false;
         enemySelected = false;
-        userFighter = null;
-        enemyFighter = null;
-        $('#arena-user').detach();
-        $('#arena-enemy').detach()
-    
+        userFighter = '';
+        enemyFighter = '';
+        $('#arena-user').replaceWith('');
+        $('#arena-enemy').replaceWith('')
+        
     }
 
     //fighter constructor
@@ -140,11 +140,10 @@ $(document).ready(function () {
     //Function to move user and enemy into the Arena
     $('#enter-arena').on('click', function() {
         if(userSelected && enemySelected) {
-            userChoice.detach();
-            enemyChoice.detach();
             $('#arena-user').append(userChoice);
             $('#arena-enemy').append(enemyChoice);
         }
+
     })
 
     //Attack button to execute function that attacks enemy, but also counterattacks user
