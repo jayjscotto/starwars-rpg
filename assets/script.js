@@ -44,9 +44,8 @@ $(document).ready(function () {
         enemySelected = false;
         userFighter = '';
         enemyFighter = '';
-        $('#arena-user').replaceWith('');
-        $('#arena-enemy').replaceWith('')
-        
+        userChoice.empty();
+        enemyChoice.empty();
     }
 
     //fighter constructor
@@ -60,7 +59,7 @@ $(document).ready(function () {
 
     //REBELLION fighters
     const lukeSkywalker = new Fighter ("Luke Skywalker", "Rebellion", 140, 30, 25);
-    const obiWan = new Fighter ("Obi Wan Kenobi", "Rebellion", 120, 26, 22);
+    const obiWan = new Fighter ("Obi-Wan Kenobi", "Rebellion", 120, 26, 22);
     const princessLeia = new Fighter ("Princess Leia", "Rebellion", 115, 35, 23);
     const hanSolo = new Fighter ("Han Solo", "Rebellion", 129, 31, 31);
     const maceWindu = new Fighter ("Mace Windu", "Jedi", 140, 56, 35);
@@ -74,47 +73,31 @@ $(document).ready(function () {
     const kyloRen = new Fighter ("Kylo Ren", "First Order", 129, 32, 32);
     const snoke = new Fighter ("Snoke", "First Order", 145, 56,32 );
 
-    //good guys
-    fighterArray.push(lukeSkywalker);
-    fighterArray.push(obiWan);
-    fighterArray.push(princessLeia);
-    fighterArray.push(hanSolo);
-    fighterArray.push(maceWindu);
-    fighterArray.push(yoda);
-
-    //bad guys
-    fighterArray.push(darthVader);
-    fighterArray.push(darthMaul);
-    fighterArray.push(tarkin);
-    fighterArray.push(palpatine);
-    fighterArray.push(kyloRen);
-    fighterArray.push(snoke);
+    //push fighters to array
+    fighterArray.push(lukeSkywalker, obiWan, princessLeia,hanSolo,maceWindu,yoda,darthVader,darthMaul,tarkin,palpatine,kyloRen,snoke);
    
-    //array check
-    console.log(fighterArray);
+    function fighterSelect(){
+        //if user has not selected a fighter, slsects their fighter on click
+        if (userSelected === false) {
+            console.log('User Selected fighter:' + $(this).text());
+            userChoice.append($(this).html());
+            userSelected = true;
+            console.log($(this).attr('data-name'));
 
-        //button click on each avatar
-        $('.avatar-btn').on('click', function(){
-            //if user has not selected a fighter, slsects their fighter on click
-            if (userSelected === false) {
-                console.log('User Selected fighter:' + $(this).text());
-                userChoice.append($(this).html());
-                userSelected = true;
-                console.log($(this).attr('data-name'));
+            //for loop that iterates over fighter array, and sets the userFighter variable to the object whose name is equivalent to the data-name attribute
+            for (let i = 0; i < fighterArray.length; i++) {
+                if ($(this).attr('data-name') === fighterArray[i].name) {
+                    userFighter = fighterArray[i];
 
-                //for loop that iterates over fighter array, and sets the userFighter variable to the object whose name is equivalent to the data-name attribute
-                for (let i = 0; i < fighterArray.length; i++) {
-                    if ($(this).attr('data-name') === fighterArray[i].name) {
-                        userFighter = fighterArray[i];
-
-                        console.log('user fighter is: ' + userFighter.name);
-                    }
+                    console.log('user fighter is: ' + userFighter.name);
                 }
-                return userFighter;
             }
+        return userFighter;
+        }
 
-            //if user has selected their fighter, selects enemy on click
-            else if (userSelected === true && enemySelected === false) {
+        //if user has selected their fighter, selects enemy on click
+        else if (userSelected === true && enemySelected === false) {
+            if (defeatedEnemies.indexOf($(this).attr('data-name'))) {
                 console.log('User Selected Enemy:' + $(this).text());
                 enemyChoice.append($(this).html());
                 enemySelected = true;
@@ -122,33 +105,28 @@ $(document).ready(function () {
                 //for loop that iterates over fighter array, and sets the enemeyFighter variableto the object whose name is equivalent to the data-name attribute
                 for (let i = 0; i < fighterArray.length; i++) {
                     if ($(this).attr('data-name') === fighterArray[i].name) {
-                        enemyFighter = fighterArray[i];
-                        console.log('enemy fighter is: ' + enemyFighter.name);
+                            enemyFighter = fighterArray[i];
+                            console.log('enemy fighter is: ' + enemyFighter.name);
+                        }
                     }
-                }
-                return enemyFighter;
             }
 
-        })
-
-
-     //Execute Order 66
-     $('#palpatine').one('click', function() {
-        confirm('Execute Order 66?');
-    })
-
-    //Function to move user and enemy into the Arena
-    $('#enter-arena').on('click', function() {
-        if(userSelected && enemySelected) {
-            $('#arena-user').append(userChoice);
-            $('#arena-enemy').append(enemyChoice);
+        return enemyFighter;
         }
+    }
 
+    //button click on each avatar
+    $('.avatar-btn').on('click', fighterSelect)
+        
+    
+    //Execute Order 66
+    $('#palpatine').one('click', function() {
+        confirm('Execute Order 66.');
     })
 
     //Attack button to execute function that attacks enemy, but also counterattacks user
     $('#attack').on('click', function (){
-        console.log(userFighter.healthPoints + userFighter.attackPoints)
+        //console.log(userFighter.healthPoints + userFighter.attackPoints);
         enemyFighter.healthPoints -= userFighter.attackPoints;
         userFighter.healthPoints -= enemyFighter.counterAttackPoints;
         console.log(userFighter.healthPoints);
@@ -157,16 +135,35 @@ $(document).ready(function () {
         //if user runs out of health points,
         //alert game over
         //reset game function executes
-        if(userFighter.healthPoints <= 0) {
+        if (userFighter.healthPoints <= 0) {
             alert('Game Over!');
             resetGame();
             console.log(userSelected, userFighter, enemySelected, enemyFighter);
-
         }
 
         //if enemy runs out of health points,
-        //push enemy to defeated enemies array...
-        //remove defeated enemy from being able to be selected
+        //clear enemy fighter from fight area
+        //push enemy fighter to defeated array
+        //select another enemey
+        
+        if (enemyFighter.healthPoints <= 0) {
+            alert('You Win! Challenge your next fighter.');
+            enemyChoice.empty();
+            enemySelected = false;
+            defeatedEnemies.push(enemyFighter);
+            console.log(defeatedEnemies)
+            fighterSelect();
+            
+        }
+
+        //if all the enemies are defeated
+        //play star wars theme or credits??
+        if (defeatedEnemies.length >= 6) {
+            alert('YOU WIN.');
+
+        }
     });
+
+    console.log(defeatedEnemies)
 
 })

@@ -30,10 +30,11 @@
 
 .avatar-btn {
     text-align: center;
-
 }
 
-
+.avatar-btn:hover {
+    cursor: pointer;
+}
 
 #choose-wisely {
     margin: 5em auto;
