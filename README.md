@@ -1,8 +1,7 @@
 ## Star-Wars Game
 
 ## Description
-This game was made to familiarize myself with the jQuery API and to strengthen my algorithmic knowledge. 
-I based it on Star Wars to make it a bit more fun.
+This game was based on Star Wars and made to familiarize myself with the jQuery API and to strengthen my algorithmic knowledge.
 
 ## Technologies Used
 - Javascript
@@ -10,6 +9,7 @@ I based it on Star Wars to make it a bit more fun.
 - HTML / Bootstrap CSS
 
 ## Link to the live game
+https://jayjscotto.github.io/starwars-rpg/
 
 ## Code Walkthrough
 1. User will select a character from the fighter select screen.

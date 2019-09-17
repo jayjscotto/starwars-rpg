@@ -2,15 +2,17 @@ $(document).ready(function () {
     //global variables
     const userChoice = $('#user-choice');
     const enemyChoice = $('#enemy-choice');
-    let userSelected = false;
-    let enemySelected = false;
-    let userFighter ;
-    let enemyFighter ;
     //array used for fighter select
     const fighterArray = [];
     //array for defeated enemies
     const defeatedEnemies = [];
-
+    let userSelected = false;
+    let enemySelected = false;
+    let userFighter ;
+    let enemyFighter ;
+    let enemy ;
+ 
+    //reset game when user runs out of health
     function resetGame () {
         userSelected = false;
         enemySelected = false;
@@ -52,7 +54,6 @@ $(document).ready(function () {
     function fighterSelect() {
         //if user has not selected a fighter, slsects their fighter on click
         if (userSelected === false) {
-            $(this).detach();
             userChoice.append($(this).html());
             userSelected = true;
 
@@ -68,7 +69,7 @@ $(document).ready(function () {
 
         //if user has selected their fighter, selects enemy on click
         else if (userSelected === true && enemySelected === false) {
-                $(this).detach();
+                enemy = $(this);
                 enemyChoice.append($(this).html());
                 enemySelected = true; 
                 //for loop that iterates over fighter array, and sets the enemeyFighter variableto the object whose name is equivalent to the data-name attribute
@@ -78,10 +79,12 @@ $(document).ready(function () {
                             console.log('enemy fighter is: ' + enemyFighter.name);
                         }
                     }
+                return enemyFighter, enemy;
             }
-            
-        return enemyFighter;
+        
     }
+
+   
 
     function resetHealth() {
         lukeSkywalker.healthPoints = 140;
@@ -128,26 +131,24 @@ $(document).ready(function () {
         //clear enemy fighter from fight area
         //push enemy fighter to defeated array
         //select another enemey
-        if (enemyFighter.healthPoints <= 0 && defeatedEnemies.length < 6) {
-            alert('You Win! Challenge your next fighter.');
-            enemyChoice.empty();
-            resetHealth();
-            enemySelected = false;
+        if (enemyFighter.healthPoints <= 0) {
             defeatedEnemies.push(enemyFighter);
-            console.log('defeated enemies: ' + defeatedEnemies);
-            fighterSelect();
-            enemy.remove();
+            console.log(defeatedEnemies.length)
+            if (defeatedEnemies.length > 5) {
+                enemy.remove();
+                alert('YOU HAVE WON.');
+            } else {
+                alert('You Win! Challenge your next fighter.');
+                enemy.remove();
+                enemyChoice.empty();
+                resetHealth();
+                enemySelected = false;
+                console.log('defeated enemies: ' + defeatedEnemies);
+                fighterSelect();
+            }
         }
 
-        //if all the enemies are defeated
-        //play star wars theme or credits??
-        if (defeatedEnemies.length = 6) {
-            alert('YOU WIN.');
-            confirm('Play again?');
-            resetGame();
-        }
     })
-
 
 })
 
