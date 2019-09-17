@@ -128,7 +128,7 @@ $(document).ready(function () {
         //clear enemy fighter from fight area
         //push enemy fighter to defeated array
         //select another enemey
-        if (enemyFighter.healthPoints <= 0) {
+        if (enemyFighter.healthPoints <= 0 && defeatedEnemies.length < 6) {
             alert('You Win! Challenge your next fighter.');
             enemyChoice.empty();
             resetHealth();
@@ -141,7 +141,7 @@ $(document).ready(function () {
 
         //if all the enemies are defeated
         //play star wars theme or credits??
-        if (defeatedEnemies.length >= 6) {
+        if (defeatedEnemies.length = 6) {
             alert('YOU WIN.');
             confirm('Play again?');
             resetGame();
