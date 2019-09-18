@@ -1,7 +1,7 @@
 ## Star-Wars Game
 
 ## Description
-This game was based on Star Wars and made to familiarize myself with the jQuery API and to strengthen my algorithmic knowledge.
+This game was based on Star Wars and made to familiarize myself with the Javacsript library jQuery and to strengthen my algorithmic knowledge.
 
 ## Technologies Used
 - Javascript
