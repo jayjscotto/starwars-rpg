@@ -11,7 +11,7 @@ This game was based on Star Wars and made to familiarize myself with the Javacsr
 ## Link to the live game
 https://jayjscotto.github.io/starwars-rpg/
 
-## Code Walkthrough
+## Game Directions
 1. User will select a character from the fighter select screen.
 2. User will select an Oppononent from the fighter select screen.
 3. User Fighter and Opponent Fighter will appear below character selection area.
